@@ -1,14 +1,4 @@
-var myDate = new Date();
-console.log(myDate);
-var hours = myDate.getHours();
-console.log(hours);
-var minutes = myDate.getMinutes();
-console.log(minutes);
-var seconds = myDate.getSeconds();
-console.log(seconds);
-
 var rndNbr = (Math.random()*(999999 - 111111) + 111111).toFixed(0);
-console.log(rndNbr);
 var rndColor = "#"+rndNbr;
 
 var boxElement = document.getElementById("box");
@@ -32,12 +22,16 @@ myClock.style.fontSize = "4rem";
 myClock.style.paddingTop = "25%";
 
 
-var counter = myDate.getSeconds();
 
 function dynamicClock() {
-	counter++;
-	if (counter < 10) {
-		counter = "0" + counter;
+	
+var myDate = new Date();
+var hours = myDate.getHours();
+var minutes = myDate.getMinutes();
+var seconds = myDate.getSeconds();
+
+	if (seconds < 10) {
+		seconds = "0" + seconds;
 	}
 	if (minutes < 10) {
 		minutes = "0" + minutes;
@@ -46,23 +40,10 @@ function dynamicClock() {
 		hours = "0" + hours;
 	}
 
-	if (counter > 59) {
-		counter = 0;
-		minutes = minutes+1;
-	}
-	if (minutes === 60) {
-		minutes = minutes - 60;
-		hours = hours + 1;
-	}
-	if (hours === 24) {
-		hours = hours - 24;
-	}
-
-	clock.innerHTML = hours.toString() + ":" + minutes.toString() + ":" + counter.toString();
+	clock.innerHTML = hours.toString() + ":" + minutes.toString() + ":" + seconds.toString();
 }
 
 var move = setInterval(dynamicClock, 1000);
-console.log(move);
 
 window.onload = function() {
     var currentColor = "#9a1003";
@@ -77,5 +58,4 @@ window.onload = function() {
         myClock.style.backgroundColor = currentColor;
     }, 2000);
 };
-
 
